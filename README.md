@@ -11,6 +11,10 @@ The goal of this project is to get an (nearly) complete whitelist for NoScript, 
 
 Usage
 ---------------
+Download the `noscript-data.json` and import it into your NoScript. This will overwrite your existing configuration, so you can also export your current one and just add the entries from this config into yours.
+
+*Alternatively*:
+
 Go to  and click through the warning. Use the search box to find your whitelist and blacklist. The whitelist is called `capability.policy.maonoscript.sites`. The blacklist is called `noscript.untrusted`. Right click --> 'Modify' to edit the value. You can either replace your existing values or add our values as you see fit.
 
 
