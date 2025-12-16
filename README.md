@@ -1,57 +1,73 @@
-# NoScript Whitelist
+# NoScript Crowdsourced Whitelist & Blocklist
 
+A community-maintained domain database for [NoScript](https://noscript.net/) — the popular Firefox extension that blocks JavaScript, Flash, and other executable content.
 
-A global domain database for NoScript powered by the crowd.
+## What's Included
 
+| File | Description | Domains |
+|------|-------------|---------|
+| `noscript_data.json` | **Ready-to-import** NoScript config file | 846 trusted, 13,284 blocked |
+| `capability.policy.maonoscript.sites` | Legacy whitelist (for `about:config`) | — |
+| `noscript.untrusted` | Legacy blocklist (for `about:config`) | — |
 
-This project is original designed by [CHEF-KOCH](https://github.com/CHEF-KOCH) and it's under Apache License v2.0 (see [License](https://github.com/CHEF-KOCH/NoScript-Whitelist/blob/master/LICENSE))). 
+### Blocklist Sources
 
+The blocklist includes domains from:
 
-The goal of this project is to get an (nearly) complete whitelist for NoScript, in fact it's created due the fact that e.g. Tor Browser temp. enable all domains, personally I don't like this, so this is the reason I created this.
+- Original crowdsourced submissions
+- [Peter Lowe's ad server list](https://pgl.yoyo.org/adservers/) — a well-maintained blocklist of ad/tracking domains
 
-Usage
----------------
-Download the `noscript-data.json` and import it into your NoScript. This will overwrite your existing configuration, so you can also export your current one and just add the entries from this config into yours.
+## Usage
 
-*Alternatively*:
+### Method 1: Import JSON (Recommended)
 
-Go to  and click through the warning. Use the search box to find your whitelist and blacklist. The whitelist is called `capability.policy.maonoscript.sites`. The blacklist is called `noscript.untrusted`. Right click --> 'Modify' to edit the value. You can either replace your existing values or add our values as you see fit.
+1. Download [`noscript_data.json`](./noscript_data.json)
+2. Open NoScript settings → Click the gear icon
+3. Go to **Export/Import** → **Import**
+4. Select the downloaded file
 
+> ⚠️ **Warning**: This will overwrite your existing NoScript configuration. Export your current settings first if you want to merge manually.
 
-Contributing to this crowdsourced list
----------------
-* Find your whitelist and blacklist as described above.
-* To add to whitelist, ensure no bad reputation is present for your reported page.
-* Your website must not be blocked by the [built-in safe-browsing feature](https://www.google.com/safebrowsing/static/faq.html).
-* If you know how to, please confirm the page is not compromised by XSS or other attacks.
-* Check the page/domain if the webmaster is trusted and all whois given information are valid and nothing is missing.
-* It does not matter much if you use the http:// or https:// prefix on domains as NoScript handles this.
+### Method 2: Manual Configuration (Legacy)
 
+For older NoScript versions or manual control:
 
-What is the benefit?
----------------
+1. Navigate to `about:config` in Firefox
+2. Search for `capability.policy.maonoscript.sites` (whitelist) or `noscript.untrusted` (blocklist)
+3. Right-click → **Modify** to edit values
 
-I think most stuff can be blocked by disabling javascript on common pages, so instead to temp allow all I prefer whitelists. In fact this would helo because all other pages are by default 'blocked'.
+## Contributing
 
+Want to add or remove domains? Please ensure:
 
-What about the cons?
----------------
+- **For whitelist additions**: The domain has no bad reputation and isn't flagged by [Google Safe Browsing](https://transparencyreport.google.com/safe-browsing/search)
+- **For blocklist additions**: The domain is a known ad server, tracker, or malicious site (ideally already listed in a reputable blocklist like EasyList or StevenBlack)
+- The domain isn't compromised by XSS or other attacks
+- WHOIS information is valid and the site owner is identifiable
 
-The nagative thingy is that this is more about user needs, if you never visit xyz listed page you normally no need to whitelist them, but on the other hand it's not dangerous because they are trustworth and should never connect to your pages (except social pages for e.g. the little share buttons).
+## Why Use This?
 
-Another thing is that you also could just block the entire domain via router, so this woule mean this would have no affect. 
+**Pros:**
 
+- Block ads, trackers, and malicious scripts by default
+- Curated whitelist lets legitimate sites work without manual intervention
+- More privacy than browser defaults
 
-Can I import NoScript settings in e.g. addons like uMatrix?
----------------
+**Cons:**
 
-You can import whitelist NoScript rules. Go to the 'My rules' pane in uMatrix's dashboard, then click Import from file. You can select a NoScript backup file and uMatrix will import what it can from the backup file. The imported rules will apply to the script column of the global scope only.
+- If you never visit a whitelisted site, those entries are unnecessary (but harmless)
+- Some sites may still break if they use unlisted CDNs or third-party scripts
 
+## Links
 
+- [NoScript Official Site](https://noscript.net/)
+- [NoScript Firefox Add-on](https://addons.mozilla.org/en-US/firefox/addon/noscript/)
+- [NoScript Forums](https://forums.informaction.com/viewforum.php?f=3)
 
-Reference
------------------
+## License
 
-* https://noscript.net/
-* https://forums.informaction.com/viewforum.php?f=3
-* https://addons.mozilla.org/en-US/firefox/addon/noscript/
+Apache License v2.0 — See [LICENSE](./LICENSE)
+
+---
+
+*Originally created by [CHEF-KOCH](https://github.com/CHEF-KOCH).*
